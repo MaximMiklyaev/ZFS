@@ -1,0 +1,382 @@
+root@zfs file_mess]# history
+    1  sudo dnf install http://download.zfsonlinux.org/epel/zfs-release.el8_2.noarch.rpm
+    2  gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
+    3  sudo dnf install epel-release
+    4  sudo dnf install kernel-devel zfs
+    5  sudo dnf config-manager --disable zfs
+    6  sudo dnf config-manager --enable zfs-kmod
+    7  sudo dnf install zfs
+    8  sudo sh -c "echo zfs >/etc/modules-load.d/zfs.conf"
+    9  sudo dnf config-manager --enable zfs-testing
+   10  sudo dnf install kernel-devel zfs
+   11  dkms status
+   12  zpool create poolmirror mirror sdb sdc
+   13  dkms install -m zfs -v 2.0.0
+   14  dkms install -m zfs -v 0.8.5
+   15  ls /var/lib/dkms/zfs/2.0.0/source/
+   16  nano /var/lib/dkms/zfs/2.0.0/source/dkms.conf
+   17  dkms install -m zfs -v 2.0.0
+   18  --kernelsourcedir
+   19  lsb_release -a
+   20  ls /boot/vmlinuz*
+   21  yum install linux-headers-4.18.0-80-generic
+   22  yum install linux-headers*
+   23  yum install dkms
+   24  apt-get update
+   25  yum update
+   26  fdisk -l
+   27  zpool create poolmirror mirror sdb sdc sdd
+   28  yum install linux-headers*
+   29  yum upgrade
+   30  reboot
+   31  zpool create poolmirror mirror sdb sdc sdd
+   32  sudo yum --enablerepo elrepo-kernel install kernel-ml -y
+   33  uname -r
+   34  dkms status
+   35  dkms install -m zfs -v 2.0.0
+   36  zpool create poolmirror mirror sdb sdc sdd
+   37  dkms status
+   38  fdisk -l
+   39  lsblk
+   40  echo disk{1..3} | xargs -n 1 fallocate -l 250M
+   41  lsblk
+   42  zpool create stripe $PWD/disk[1-3]
+   43  lsblk
+   44  zpool create mir mirror $PWD/disk[1-3]
+   45  zpool -f create mir mirror $PWD/disk[1-3]
+   46  zpool create mir mirror $PWD/disk[1-3]
+   47  zpool create mir mirror $PWD/disk[1-3] -f
+   48  zpool create -f mir mirror $PWD/disk[1-3]
+   49  zpool status -v
+   50  zpool list
+   51  zpool destroy stripe
+   52  zpool list
+   53  zpool destroy poolmirror
+   54  zpool list
+   55  ls -l disk*
+   56  zpool create myzfs /disk1 /disk2
+   57  ls -l disk*
+   58  zpool list
+   59  zpool create myzfs /disk1 /disk2 /disk3
+   60  zpool create poolmirror mirror sdb sdc sdd
+   61  zpool list
+   62  zpool create myzfs /disk1 /disk2 /disk3
+   63  echo disk{1..3} | xargs -n 1 fallocate -l 250M
+   64  zpool list
+   65  zpool create myzfs $PWD/disk[1-3]
+   66  zpool list
+   67  zpool create myzfs mirror $PWD/disk[1-3]
+   68  zpool create myzfs mirror -f $PWD/disk[1-3]
+   69  zpool list myzfs
+   70  zpool list
+   71  zpool destroy myzfs
+   72  zpool destroy poolmirror
+   73  zpool list
+   74  zpool create poolmirror mirror sdb sdc sdd
+   75  echo disk{1..6} | xargs -n 1 fallocate -l 100M
+   76  zpool list
+   77  ls -l disk*
+   78  ls -ls
+   79  zpool create myzfs $PWD/disk[1-5]
+   80  zpool create mir mirror $PWD/disk[1-5]
+   81  zpool create raid raidz1 $PWD/disk[1-3]
+   82  zpool create raid raidz2 $PWD/disk[1-2]
+   83  zpool create raid raidz2 $PWD/disk[1-4]
+   84  zpool create raid raidz2 $PWD/disk[1-5]
+   85  zpool create raid raidz2 $PWD/disk[1-6]
+   86  zpool list
+   87  zpool destroy myzfs
+   88  zpool list
+   89  zpool create mir mirror $PWD/disk[1-5]
+   90  zpool list
+   91  ls -l disk
+   92  ls -l disk*
+   93  zpool destroy poolmirror
+   94  ls -l disk*
+   95  zpool list
+   96  zpool create mir mirror $PWD/disk[1-5]
+   97  zpool create raid raidz1 $PWD/disk[1-3]
+   98  zpool list
+   99  ls -l disk*
+  100  zpool create raid raidz2 $PWD/disk[4-6]
+  101  zpool create raid1 raidz2 $PWD/disk[4-6]
+  102  ls -l disk*
+  103  zpool list
+  104  zpool destroy raid
+  105  zpool destroy raid1
+  106  zpool create raid raidz3 $PWD/disk[1-6]
+  107  zpool create raid raidz3 $PWD/disk[4-6]
+  108  zpool create mir mirror $PWD/disk[1-3]
+  109  zpool list
+  110  zpool destroy mir
+  111  zpool list
+  112  zpool create storage mirror sdb sdc
+  113  zpool list
+  114  log mirror nvme0n1 nvme0n2
+  115  zpool destroy storage
+  116  zpool create storage mirror sdb sdc log mirror nvme0n1 nvme0n2 cache nvme0n3 nvme0n4
+  117  zpool list
+  118  zpool create storage mirror sdb sdc
+  119  zpool add storage cache nvme0n3 nvme0n4
+  120  zpool add storage log mirror nvme0n1 nvme0n2
+  121  zfs create storage/userdir
+  122  zpool list
+  123  df -h
+  124  cd /storage/userdir/
+  125  ls
+  126  echo > 1.txt
+  127  ls
+  128  lsblk
+  129  zfs list
+  130  zpool history
+  131  wget -O War_and_Peace.txt http://www.gutenberg.org/ebooks/2600.txt.utf-8
+  132  wget -O War_and_Peace.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  133  zpool list
+  134  zpool destroy storage
+  135  zpool list
+  136  zpool destroy storage
+  137  history
+  138  zfs create storage/data
+  139  zpool list
+  140  zfs create storage/data/video
+  141  zfs create storage/data/music
+  142  mount
+  143  zfs get mounted
+  144  zfs set mountpoint=/home/testuser storage/data/media
+  145  zfs set mountpoint=/home/
+  146  zfs set mountpoint=/home/testuser storage/data/video
+  147  dd if=/dev/urandom of=/home/testuser/file bs=1M
+  148  df -h
+  149  zfs list
+  150  zfs get quota
+  151  zfs set quota=500M storage/data/video
+  152  zfs list # before
+  153  zfs set reservation=5G storage/data/music
+  154  zfs set reservation=50M storage/data/music
+  155  zfs set reservation=10M storage/data/music
+  156  zfs set reservation=10Mb storage/data/music
+  157  zfs set reservation=0.05G storage/data/music
+  158  zfs set reservation=0,05G storage/data/music
+  159  zfs list # after
+  160  zfs create storage/src
+  161  history
+  162  zfs list
+  163  zpool destroy storage/userdir
+  164  zpool destroy storage
+  165  zfs destroy storage/data/video
+  166  zfs destroy storage/data/music
+  167  zfs destroy storage/data
+  168  zfs destroy storage
+  169  zfs destroy storage/userdir
+  170  zfs list
+  171  zfs destroy storage/userdir
+  172  umount /storage/userdir
+  173  umount /storage
+  174  zfs destroy storage/userdir
+  175  zfs unmount /storage/userdir
+  176  zfs unmount /storage
+  177  df -h
+  178  zpool destroy -f storage
+  179  zpool status -v
+  180  no pools available
+  181  reboot
+  182  history
+  183  df -h
+  184  zfs unmount /storage/userdir
+  185  zfs destroy storage
+  186  df -h
+  187  zfs destroy storage
+  188  zfs destroy -f storage
+  189  zpool destroy storage
+  190  ls -l disk*
+  191  fdisk -l
+  192  history
+  193  zpool create raid raidz3 $PWD/disk[1-6]
+  194  zpool create raid raidz3 $PWD/disk[1-3]
+  195  zpool create raid raidz1 $PWD/disk[1-3]
+  196  zpool list
+  197  df -h
+  198  zfs create raid/1
+  199  zfs create raid/2
+  200  zfs create raid/3
+  201  zfs create raid/4
+  202  zfs create raid/5
+  203  zfs create raid/6
+  204  zfs set compression=gzip /raid/1/
+  205  zfs set compression=gzip /raid/1
+  206  zfs set compression=gzip raid/1
+  207  zfs set compression=gzip-N raid/2
+  208  zfs set compression=gzip-1 raid/2
+  209  zfs set compression=zle raid/3
+  210  zfs set compression=lzjb raid/4
+  211  zfs set compression=lz4 raid/5
+  212  zfs set compression=zstd raid/6
+  213  zfs get compression,compressratio
+  214  cd /raid/1/
+  215  yum install wget.x86_64
+  216  wget -O War_and_Peace1.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  217  cd /raid/2/
+  218  wget -O War_and_Peace2.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  219  cd /raid/3/
+  220  wget -O War_and_Peace2.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  221  rm War_and_Peace2.txt War_and_Peace2.txt War_and_Peace2.txt
+  222  ls
+  223  wget -O War_and_Peace3.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  224  cd /raid/4/
+  225  wget -O War_and_Peace4.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  226  cd /raid/5/
+  227  wget -O War_and_Peace5.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  228  cd /raid/6/
+  229  wget -O War_and_Peace6.txt http://www.gutenberg.org/files/2600/2600-0.txt
+  230  history
+  231  zfs get compression,compressratio
+  232  ls
+  233  lsblk
+  234  zpool list
+  235  zfs set compression=zstd raid/7
+  236  zfs create raid/7
+  237  zfs set compression=zstd raid/7
+  238  cd /raid/7/
+  239  wget -O https://drive.google.com/open?id=1KRBNW33QWqbvbVHa3hLJivOAt60yukkg
+  240  wget https://drive.google.com/open?id=1KRBNW33QWqbvbVHa3hLJivOAt60yukkg
+  241  history
+  242  ьс
+  243  mc
+  244  zpool import -d ${PWD}/zpoolexport/
+  245  zpool import -d ${PWD}/zpoolexport/ /raid/
+  246  zfs create raid/8
+  247  zpool import -d ${PWD}/zpoolexport/ /raid/8/
+  248  zpool export raid
+  249  zpool status
+  250  ls
+  251  df -h
+  252  zpool status
+  253  mc
+  254  exit
+  255  mc
+  256  ls /home/
+  257  cd /home/
+  258  pool import -d zpoolexport/
+  259  zpool import -d zpoolexport/
+  260  df -h
+  261  zpool list
+  262  zpool upgrade
+  263  zpool list
+  264  zpool status -v
+  265  ls
+  266  cd zpoolexport/
+  267  ls
+  268  nano file
+  269  zpool upgrade -v
+  270  zpool status -v
+  271  zpool iostat 5
+  272  zfs list
+  273  fs get all
+  274  zfs get all
+  275  cd ..
+  276  zpool import -d ${PWD}/zpoolexport/ /raid/
+  277  zpool import -d ${PWD}/zpoolexport/
+  278  zfs get all
+  279  ls
+  280  cd zpoolexport/
+  281  ls
+  282  zpool export raid
+  283  zpool status
+  284  zpool import -d ${PWD}/zpoolexport/
+  285  cd ..
+  286  zpool import -d ${PWD}/zpoolexport/
+  287  zpool import -d ${PWD}/zpoolexport/ raid
+  288  zfs get all
+  289  zfs list
+  290  zpool scrub zpoolexport/
+  291  zpool scrub zpoolexport
+  292  zpool import -d zpoolexport
+  293  zpool upgrade
+  294  zfs list
+  295  zpool import -d zpoolexport/file
+  296  zpool import -d zpoolexport
+  297  zpool create export raidz1 $PWD/disk[1-3]
+  298  zfs list
+  299  cd ..
+  300  zpool create export raidz1 $PWD/disk[1-3]
+  301  fdisk -l
+  302  lsblk
+  303  ls -l disk*
+  304  echo disk{1..3} | xargs -n 1 fallocate -l 200M
+  305  ls -l disk*
+  306  mc
+  307  cd ..
+  308  ls
+  309  zpool import -d zpoolexport
+  310  df -h
+  311  cd /dev/sda1
+  312  fdisk -l
+  313  zpool create poolmirror mirror sda
+  314  zpool create poolmirror mirror sda
+  315  zpool create poolmirror mirror sda sdb sdc sdd
+  316  lsblk
+  317  cd /sda
+  318  df -h
+  319  echo disk{1..6} | xargs -n 1 fallocate -l 200M
+  320  ls -l disk*
+  321  lsblk
+  322  ls
+  323  zpool import -d zpoolexport
+  324  zpool list
+  325  zpool create raid raidz $PWD/disk[1-6]
+  326  zpool list
+  327  zpool import -d ${PWD}/zpoolexport/ raid
+  328  zpool list
+  329  zpool export raid
+  330  zpool list
+  331  zpool import -d ${PWD}/zpoolexport/ export
+  332  zpool status
+  333  zpool import -d ${PWD}/zpoolexport/
+  334  zpool import -d ${PWD}/zpoolexport/ raid
+  335  zpool status
+  336  zpool import -d ${PWD}/zpoolexport/ otus
+  337  zpool status
+  338  zfs get all
+  339  zpool list
+  340  df -h
+  341  zpool create poolmirror mirror sdb sdc sdd
+  342  lsblk
+  343  ls -l disk*
+  344  df -h
+  345  fdisk
+  346  fdisk -l
+  347  zpool list
+  348  cd poolmirror/
+  349  [root@zfs poolmirror]#
+  350  echo disk{1..3} | xargs -n 1 fallocate -l 250M
+  351  wget https://drive.google.com/file/d/1gH8gCL9y7Nd5Ti3IRmplZPF1XjzxeRAG/view?usp=sharing
+  352  ls
+  353  ls -l disk*
+  354  zpool create zfs $PWD/disk[1-3]
+  355  mc
+  356  cd ..
+  357  ls
+  358  cd /
+  359  zfs list
+  360  zfs rollback otus_task2.file
+  361  zfs receive otus < otus_task2.file
+  362  zfs receive - F otus < otus_task2.file
+  363  zfs receive -F otus < otus_task2.file
+  364  zfs list
+  365  cd otus/
+  366  ls
+  367  ls task1/
+  368  ls task1/file_mess/
+  369  ls
+  370  ls hometask2/
+  371  zfs create otus/1
+  372  zfs receive -F otus/1 < otus_task2.file
+  373  cd ..
+  374  zfs receive -F otus/1 < otus_task2.file
+  375  ls /otus/1
+  376  history
+  377  св /otus/1
+  378  cd /otus/1
+  379  mc
+  380  nano /otus/1/task1/file_mess/secret_message
+  381  history
